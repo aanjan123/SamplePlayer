@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Video, { TextTrackType } from 'react-native-video';
-import InteractiveTranscripts from "react-native-interactive-transcripts";
+import InteractiveTranscripts from 'react-native-interactive-transcripts';
 
 const TestPlayer = () => {
 
@@ -30,10 +30,10 @@ const TestPlayer = () => {
           textTracks={[
             {
               index: 0,
-              title: "English CC",
-              language: "en",
+              language: 'en',
+              title: 'English CC',
               type: TextTrackType.VTT,
-              uri: "https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt"
+              uri: 'https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt'
             }
           ]}
         />
