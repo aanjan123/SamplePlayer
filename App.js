@@ -23,6 +23,9 @@ const TestPlayer = () => {
           onProgress={_onProgress}
           style={styles.backgroundVideo}
           source={require('./video.mp4')}
+          resizeMode={
+            'cover'
+          }
           selectedTextTrack={{
             type: 'index',
             value: 0

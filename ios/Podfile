@@ -12,6 +12,8 @@ target 'coding_challange' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'coding_challangeTests' do
     inherit! :complete
     # Pods for testing
