@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "17.0.2",
     "react-native": "0.67.2",
+    "react-native-interactive-transcripts": "^0.1.1",
     "react-native-video": "^5.2.0"
   },
   "devDependencies": {

@@ -1,46 +1,65 @@
 import React from 'react';
+import { View, Text } from 'react-native';
 import Video, { TextTrackType } from 'react-native-video';
+import InteractiveTranscripts from "react-native-interactive-transcripts";
 
-const VideoPlayer = () => {
+const TestPlayer = () => {
 
   const playerRef = React.useRef();
+  const [duration, setDuration] = React.useState(0);
+
+  const _onProgress = (progress) =>
+    setDuration(progress.currentTime * 1000);
+
+  const _onSeekToTranscript = (time) =>
+    playerRef.current?.seek(time);
 
   return (
-    <Video
-      controls
-      ref={playerRef}
-      onBuffer={this.onBuffer}
-      onError={this.videoError}
-      style={styles.backgroundVideo}
-      source={require('./assets/jellies.mp4')}
-      selectedTextTrack={{
-        type: 'index',
-        value: 0
-      }}
-      textTracks={[
-        {
-          index: 0,
-          title: "English CC",
-          language: "en",
-          type: TextTrackType.VTT, // "text/vtt"
-          uri: "https://bitdash-a.akamaihd.net/content/sintel/subtitles/subtitles_en.vtt"
-        },
-        {
-          index: 1,
-          title: "Spanish Subtitles",
-          language: "es",
-          type: TextTrackType.SRT, // "application/x-subrip"
-          uri: "https://durian.blender.org/wp-content/content/subtitles/sintel_es.srt"
-        }
-      ]}
-    />
+    <View style={styles.container}>
+      <View style={styles.container}>
+        <Video
+          controls
+          ref={playerRef}
+          onProgress={_onProgress}
+          style={styles.backgroundVideo}
+          source={require('./video.mp4')}
+          selectedTextTrack={{
+            type: 'index',
+            value: 0
+          }}
+          textTracks={[
+            {
+              index: 0,
+              title: "English CC",
+              language: "en",
+              type: TextTrackType.VTT,
+              uri: "https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt"
+            }
+          ]}
+        />
+      </View>
+
+      <View style={styles.container}>
+        <InteractiveTranscripts
+          currentDuration={duration}
+          url={
+            'https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt'
+          }
+          activeTranscriptColor={'blue'}
+          seekToTranscriptDuration={_onSeekToTranscript}
+        />
+      </View>
+    </View>
   )
 }
 
 
-export default VideoPlayer;
+export default TestPlayer;
 
 const styles = {
+  container: {
+    flex: 1
+  },
   backgroundVideo: {
     position: 'absolute',
     top: 0,
