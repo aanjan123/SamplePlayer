@@ -10,10 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/toolbar-android": "^0.2.1",
     "react": "17.0.2",
     "react-native": "0.67.2",
     "react-native-interactive-transcripts": "^0.1.1",
-    "react-native-video": "^5.2.0"
+    "react-native-video": "^5.2.0",
+    "react-native-video-controls-subtitle": "^1.0.0",
+    "react-native-vlc-media-player": "^1.0.40"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
