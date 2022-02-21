@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import Video, { TextTrackType } from 'react-native-video';
 import InteractiveTranscripts from 'react-native-interactive-transcripts';
+
+const VIDEO_URL = `https://videodelivery.net/8ed7a050e2183c88229d5ccd76510963/manifest/video.m3u8`;
+const SRT_URL = 'https://all-subtitle-files.s3.eu-north-1.amazonaws.com/nepali_reviewed/20220117_45_ne.srt';
 
 const TestPlayer = () => {
 
@@ -22,7 +25,7 @@ const TestPlayer = () => {
           ref={playerRef}
           onProgress={_onProgress}
           style={styles.backgroundVideo}
-          source={require('./video.mp4')}
+          source={{ uri: VIDEO_URL }}
           resizeMode={
             'cover'
           }
@@ -30,15 +33,15 @@ const TestPlayer = () => {
             type: 'index',
             value: 0
           }}
-          textTracks={[
+          textTracks={Platform.OS === 'android' ? [
             {
               index: 0,
               language: 'en',
               title: 'English CC',
-              type: TextTrackType.VTT,
-              uri: 'https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt'
+              type: TextTrackType.SRT,
+              uri: SRT_URL
             }
-          ]}
+          ] : []}
         />
       </View>
 
@@ -46,7 +49,7 @@ const TestPlayer = () => {
         <InteractiveTranscripts
           currentDuration={duration}
           url={
-            'https://html5multimedia.com/code/ch8/elephants-dream-subtitles-en.vtt'
+            SRT_URL
           }
           activeTranscriptColor={'blue'}
           seekToTranscriptDuration={_onSeekToTranscript}
